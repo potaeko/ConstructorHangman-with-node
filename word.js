@@ -1,44 +1,56 @@
+// for creating user prompts define inquirer
+var inquirer = require('inquirer');
+var Letter = require('./Letter');
+// for defiing colors to the user input or output.
+var colors = require('colors')
+var line = colors.cyan("===========================================================================");
 
+//New word object.
+var Word = function(wrd){
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+	this.play = play
+}
 
-var letter = require('./letter.js');
+function play(mainFunc){
 
-function Word(target) {
-	this.target = target;
-	this.lets = [];
-	this.found = false;
+	if ((mainFunc.choicesRemain!=0 && mainFunc.complete === false)){ 
+		console.log('Your Word is : ' + mainFunc.currentWord.join(' '))
 
-	this.getLet = function() {
-		for (var i=0; i < this.target.length; i++) {
-			this.lets.push( new letter(this.target[i]));
+		inquirer.prompt([
+		{
+			type:'input',
+			name:"guess",
+			message:'Enter your Guess: '
 		}
-	};
+		]).then(function(uChoice){
+			console.log("userguess: " + uChoice.guess)
+			userGuess = uChoice.guess
+			var letter = new Letter(userGuess);
+			letter.checkLetter(mainFunc);
 
-	this.findWord = function() {
-		this.found = this.lets.every(function(currLett) {
-			return currLett.appear;
-		});
-		return this.found;
-	};
-
-	this.checkLetter = function(guessLet) {
-		var toReturn = 0;
-
-		for (var i = 0; i < this.lets.length; i++) {
-			if (this.lets[i].charac == guessLet){
-				this.lets[i].appear = true;
-				toReturn++;
-			}
-		}
-		return toReturn;
-	};
-
-	this.wordRender = function() {
-		var string = '';
-		for (var i=0; i < this.lets.length; i++){
-			string += this.lets[i].letterRender();
-		}
-		return string;
-	};
+			if(mainFunc.currentWord.join('') === mainFunc.randomWord){
+		        mainFunc.complete = true;
+		        mainFunc.wins++;
+		        mainFunc.printStats();
+		        mainFunc.startGame();
+		        return;     
+		    }
+		    else{
+		    	mainFunc.complete= false;
+		    	if (mainFunc.choicesRemain===0){
+		    		console.log(colors.red("You are WRONG !!!"))
+	    			console.log(colors.yellow("CORRECT word is: " + mainFunc.randomWord))
+					console.log(line);	
+		    		mainFunc.losses++;
+		    		mainFunc.printStats();
+		    		mainFunc.startGame();
+		    		return;
+		    	}
+		    	play(mainFunc);        
+		    }
+			
+		})
+	}
 
 }
 
