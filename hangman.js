@@ -57,8 +57,8 @@ function Hangman(){
 				console.log( " Thank you for your time");
 			}
 		})	
-	}
-}
+	};
+};
 
 var Hangman = new Hangman();
 Hangman.startGame();

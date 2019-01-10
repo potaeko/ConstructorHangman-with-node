@@ -1,8 +1,8 @@
 // for creating user prompts define inquirer
 var inquirer = require('inquirer');
-var Letter = require('./Letter');
+var Letter = require('./letter');
 // for defiing colors to the user input or output.
-var colors = require('colors')
+var colors = require('colors');
 var line = colors.cyan("===========================================================================");
 
 //New word object.
@@ -47,11 +47,9 @@ function play(mainFunc){
 		    		return;
 		    	}
 		    	play(mainFunc);        
-		    }
-			
-		})
-	}
-
-}
+		    };
+		});
+	};
+};
 
 module.exports = Word;
