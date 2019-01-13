@@ -1,12 +1,13 @@
-// for creating user prompts define inquirer
+//inquirer.js nom,  provides the user interface and the inquiry session flow.
 var inquirer = require('inquirer');
+//Include letter module
 var Letter = require('./letter');
-// for defiing colors to the user input or output.
+//colors.js npm, get color and style in node.js console
 var colors = require('colors');
+//Make a red line in console
 var line = colors.cyan("===========================================================================");
-
-//New word object.
-var Word = function(wrd){
+//New Word object.
+var Word = function(){
     // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
 	this.play = play
 }
@@ -25,16 +26,19 @@ function play(mainFunc){
 		]).then(function(uChoice){
 			console.log("userguess: " + uChoice.guess)
 			userGuess = uChoice.guess
+			// Object constructor function that created the instance object
 			var letter = new Letter(userGuess);
 			letter.checkLetter(mainFunc);
 
+			//complete with correct answer
 			if(mainFunc.currentWord.join('') === mainFunc.randomWord){
 		        mainFunc.complete = true;
 		        mainFunc.wins++;
 		        mainFunc.printStats();
 		        mainFunc.startGame();
 		        return;     
-		    }
+			}
+			//complete with wrong answer
 		    else{
 		    	mainFunc.complete= false;
 		    	if (mainFunc.choicesRemain===0){

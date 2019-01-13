@@ -1,20 +1,19 @@
 
-// for defiing colors to the user input or output.
+//colors.js npm, get color and style in node.js console
 var colors = require('colors');
+//Make a red line in console
 var line = colors.red("-------------------------------------------------------------");
 var Letter = function(userGuess){
 	this.guess = userGuess;
-	this.cWord=[];
+	this.currentWord=[];
 	this.compareWord = compareWord;
 	this.checkLetter = checkLetter;
 };
 
-module.exports = Letter;
-
 function checkLetter(mainFunc){
 	 
 	 for (var i=0; i< mainFunc.randomWord.length;i++){
-	 		this.cWord[i]=mainFunc.currentWord[i]
+	 		this.currentWord[i]=mainFunc.currentWord[i]
 		};
 		mainFunc.userGuess.push(this.guess);
 		this.compareWord(this.guess, mainFunc)
@@ -25,12 +24,12 @@ function compareWord(letter, mainFunc){
 
 		for (var i=0;i<mainFunc.randomWord.length;i++){
 			if (letter.toLowerCase() === mainFunc.randomWord[i]){
-				this.cWord[i] = mainFunc.randomWord[i];
+				this.currentWord[i] = mainFunc.randomWord[i];
 				validGuess = true;
-				mainFunc.currentWord = this.cWord;
+				mainFunc.currentWord = this.currentWord;
 			};
 		};
-
+		//Correct Guess
 		if (validGuess){
 			console.log(line);
 			console.log(colors.green("CORRECT !!!"))
@@ -38,7 +37,7 @@ function compareWord(letter, mainFunc){
 			console.log("Your Guesses is: " + colors.yellow(mainFunc.userGuess))
 			console.log(line);
 		}
-
+		//Wrong Guess
 		else {
 			--mainFunc.choicesRemain;
 			console.log(line);
@@ -48,5 +47,6 @@ function compareWord(letter, mainFunc){
 			console.log(colors.green("Choices Remain: ") + mainFunc.choicesRemain );
 			console.log(line);
 		};
+};
 
-	};
+module.exports = Letter;
