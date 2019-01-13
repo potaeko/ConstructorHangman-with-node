@@ -1,4 +1,4 @@
-# ConstructorHangman with node
+# ConstructorHangman with node 
 
 
 Instructions The completed game should meet the following criteria: The completed game should be able to receive user input using the inquirer or prompt npm packages. Feel free to use as many different types of constructor functions as you are able to, but at a minimum, you must create the following constructor functions:

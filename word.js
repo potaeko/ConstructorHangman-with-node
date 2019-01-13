@@ -26,7 +26,7 @@ function play(mainFunc){
 		]).then(function(uChoice){
 			console.log("userguess: " + uChoice.guess)
 			userGuess = uChoice.guess
-			// Object constructor function that created the instance object
+			// Object constructor function that created the instance object 
 			var letter = new Letter(userGuess);
 			letter.checkLetter(mainFunc);
 

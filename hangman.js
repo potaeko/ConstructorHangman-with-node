@@ -63,7 +63,7 @@ function Hangman(){
 				var game = new Word(mainFunc.randomWord);
 				game.play(mainFunc);
 			}
-			//if user choose n
+			//if user choose n 
 			else{
 				console.log( " Thank you for your time!");
 			}

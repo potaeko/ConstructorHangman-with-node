@@ -1,5 +1,5 @@
 
-//colors.js npm, get color and style in node.js console
+//colors.js npm, get color and style in node.js console 
 var colors = require('colors');
 //Make a red line in console
 var line = colors.red("-------------------------------------------------------------");
